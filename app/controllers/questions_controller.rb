@@ -14,7 +14,7 @@ class QuestionsController < ApplicationController
       flash[:success] = "Question successfully created"
       redirect_to questions_path
     else
-      flash[:error] = "Something went wrong"
+      flash[:danger] = "Something went wrong"
       render 'new'
     end
   end
@@ -26,7 +26,7 @@ class QuestionsController < ApplicationController
       flash[:success] = "Question was successfully updated"
       redirect_to questions_path
     else
-      flash[:error] = "Something went wrong"
+      flash[:danger] = "Something went wrong"
       render 'edit'
     end
   end
@@ -36,7 +36,7 @@ class QuestionsController < ApplicationController
       flash[:success] = 'Question was successfully deleted.'
       redirect_to questions_path
     else
-      flash[:error] = 'Something went wrong'
+      flash[:danger] = 'Something went wrong'
       redirect_to questions_path
     end
   end

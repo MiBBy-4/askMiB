@@ -1,12 +1,22 @@
-<%= form_with model: object do |f| %>
-  <div>
-    <%= f.label :title, "title" %>
-    <%= f.text_field :title, required: true, placeholder: "Enter title" %>
+<%= render 'shared/errors', object: object %>
+
+<%= form_with model: object, local: true, data: { turbo: false } do |f| %>
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= f.label :title, "title" %>
+    </div>
+    <div class="col-sm-10">
+      <%= f.text_field :title, required: true, placeholder: "Enter title", class: 'form-control' %>
+    </div>
   </div>
-  <div>
-    <%= f.label :body, "body" %>
-    <%= f.text_area :body, required: true %>
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= f.label :body, "body" %>
+    </div>
+    <div class="col-sm-10">
+      <%= f.text_area :body, required: true, class: 'form-control' %>
+    </div>
   </div>
 
-  <%= f.submit "Submit" %>
+  <%= f.submit "Submit", class: 'btn btn-primary' %>
 <% end %>
