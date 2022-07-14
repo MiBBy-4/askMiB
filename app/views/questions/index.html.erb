@@ -2,5 +2,12 @@
 <% @questions.each do |question| %>
   <h3><%= question.title %></h3>
   <time datetime="<%= question.formatted_create_at %>"><%= question.formatted_create_at %></time>
-  <p><%= question.body %><p>
+  <p>
+    <%= question.body %>
+    <div>
+      <%= link_to "Edit", edit_question_path(question) %>
+      <%= link_to "Show", question_path(question) %>
+      <%= link_to "Delete", question_path(question), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+    </div>
+  <p>
 <% end %>

@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   root 'pages#index'
-  get '/questions', to: 'questions#index'
+  resources :questions
 end
