@@ -7,3 +7,36 @@
 </p>
 <%= link_to "Edit", edit_question_path(@question), class: 'btn btn-secondary' %>
 <%= link_to "Delete", question_path(@question), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+
+<hr class="my-3">
+
+<h3 class="text-center mb-3">Answers</h3>
+
+<%= render 'shared/errors', object: @answer %>
+
+<%= form_with model: [@question, @answer] do |f| %>
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= f.label :body, "body" %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= f.text_area :body, class: 'form-control' %>
+    </div>
+  </div>
+
+  <%= f.submit "Submit answer", class: 'mb-5' %>
+<% end %>
+<% if @answers.any? %>
+  <% @answers.each do |answer| %>
+    <article class="mb-2">
+      <time datetime="<%= answer.formatted_create_at %>">
+        <%= answer.formatted_create_at %>
+      </time>
+      <p class="mb-0">
+        <%= answer.body %>
+      </p>
+      <%= link_to "Delete answer", question_answer_path(@question, answer), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+    </article>
+  <% end %>
+<% end %>
