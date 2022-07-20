@@ -24,7 +24,7 @@ gem "turbo-rails"
 gem 'cssbundling-rails'
 gem 'sassc-rails'
 gem 'bootstrap', '~> 5.1.3'
-
+gem 'faker', '~> 2'
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
