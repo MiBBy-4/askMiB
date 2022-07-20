@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'pages#index'
   resources :questions do
-    resources :answers, only: [:create, :destroy]
+    resources :answers, except: [:new, :show]
   end
 end

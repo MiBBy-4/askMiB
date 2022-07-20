@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
   before_action :set_question!
+  before_action :set_answer!, except: :create
   def create
     @answer = @question.answers.build answer_params
 
@@ -14,8 +15,7 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    answer = @question.answers.find params[:id]
-    if answer.destroy
+    if @answer.destroy
       flash[:success] = 'Answer was successfully deleted.'
       redirect_to @question, status: 303
     else
@@ -23,8 +23,19 @@ class AnswersController < ApplicationController
       redirect_to @question
     end
   end
-  
-  
+
+  def edit; end
+
+  def update
+    if @answer.update answer_params
+      flash[:success] = "Question was successfully updated"
+      redirect_to @question
+    else
+      flash[:danger] = "Something went wrong"
+      render 'edit'
+    end
+  end
+
   private
 
   def set_question!
@@ -33,5 +44,9 @@ class AnswersController < ApplicationController
 
   def answer_params
     params.require(:answer).permit(:body)
+  end
+
+  def set_answer!
+    @answer = @question.answers.find params[:id]
   end
 end
