@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :set_question!, except: [:index, :new, :create]
   def index
-    @questions = Question.all 
+    @questions = Question.order(created_at: :desc).page params[:page]
   end
 
   def new
