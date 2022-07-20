@@ -5,9 +5,9 @@
 <time datetime="<%= @question.formatted_create_at %>">
   <%= @question.formatted_create_at %>
 </time>
-<p class="lead my-3">
-  <%= @question.body %>
-</p>
+<div class="lead my-3">
+  <%= sanitize @question.body %>
+</div>
 <%= link_to "Edit", edit_question_path(@question), class: 'btn btn-secondary' %>
 <%= link_to "Delete", question_path(@question), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
 
@@ -17,17 +17,5 @@
 
 <%= render 'answers/form' %>
 
-<% if @answers.any? %>
-  <% @answers.each do |answer| %>
-    <article class="mb-2">
-      <time datetime="<%= answer.formatted_create_at %>">
-        <%= answer.formatted_create_at %>
-      </time>
-      <p class="mb-0">
-        <%= answer.body %>
-      </p>
-      <%= link_to "Edit", edit_question_answer_path(@question, answer), class: 'btn btn-info btn-sm' %>
-      <%= link_to "Delete answer", question_answer_path(@question, answer), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
-    </article>
-  <% end %>
-<% end %>
+<%= render partial: 'answers/answer', collection: @answers, as: :answer, locals: { question: @question } %>
+

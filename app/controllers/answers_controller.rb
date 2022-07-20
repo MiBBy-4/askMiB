@@ -28,8 +28,8 @@ class AnswersController < ApplicationController
 
   def update
     if @answer.update answer_params
-      flash[:success] = "Question was successfully updated"
-      redirect_to @question
+      flash[:success] = "Answer was successfully updated"
+      redirect_to question_path(@question, anchor: "answer-#{@answer.id}")
     else
       flash[:danger] = "Something went wrong"
       render 'edit'
