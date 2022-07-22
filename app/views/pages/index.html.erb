@@ -1,2 +1,5 @@
 <% currently_at "Home" %>
 <h1>Welcome to AskMiB</h1>
+<% if user_signed_in? %>
+  <h2>You are signed in as <%= current_user.name %></h2>
+<% end %>

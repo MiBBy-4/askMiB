@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :questions do
     resources :answers, except: [:new, :show]
   end
+  resources :users, only: [:new, :create]
 end
