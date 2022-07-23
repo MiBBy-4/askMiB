@@ -8,9 +8,13 @@
         </ul>
         <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
           <% if user_signed_in? %>
-            <li class="nav-item px-2"><%= current_user.name_or_email %></li>
+            <li class="nav-item px-2">
+              <%= nav_tab current_user.name_or_email, '#', class: 'nav-link px-2', current_page: current_page %>
+            </li>
+            <li class="nav-item px-2"><%= link_to 'Logout', session_path, class: 'nav-link px-2', data: { turbo_method: :delete } %></li>
           <% else %>
             <li><%= nav_tab "Sign Up", new_user_path, class: 'nav-link px-2', current_page: current_page %></li>
+            <li><%= nav_tab "Sign In", new_session_path, class: 'nav-link px-2', current_page: current_page %></li>
           <% end %>
         </ul>
       </nav>
