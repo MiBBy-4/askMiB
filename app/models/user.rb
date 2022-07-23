@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  attr_accessor :old_password
+  attr_accessor :old_password, :remember_token
 
-  validates :email, presence: true, uniqueness: true, 'valid_email_2/email': true
+  validates :email, presence: true, uniqueness: true
   validates :name, presence: true
   validates :password, confirmation: true, allow_blank: true, length: { minimum: 8, maximum: 70 }
   validate :password_complexity
@@ -9,6 +9,27 @@ class User < ApplicationRecord
   validate :correct_old_password, on: :update, if: -> { password.present? }
 
   has_secure_password validations: false
+
+  def remember_me
+    self.remember_token = SecureRandom.urlsafe_base64
+    update_column :remember_token_digest, digest(remember_token)
+  end
+
+  def forget_me
+    self.remember_token = nil
+    update_column :remember_token_digest, nil
+  end
+
+  def remember_token_authenticated?(remember_token)
+
+    return false unless remember_token_digest.present?
+    BCrypt::Password.new(remember_token_digest).is_password?(remember_token)
+  end
+
+  def digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
+  end
   
   private
 
