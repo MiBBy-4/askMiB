@@ -37,6 +37,10 @@ gem 'jbuilder'
 # gem "redis", "~> 4.0"
 gem 'draper'
 gem 'valid_email2', '~> 4.0'
+gem 'rubyzip', '~> 2'
+gem 'caxlsx'
+gem 'caxlsx_rails'
+gem 'rubyXL'
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -62,6 +66,8 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'faker', '~> 2'
+  gem 'pry-rails'
+  gem 'activerecord-import'
 end
 
 group :development do
