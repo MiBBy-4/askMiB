@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-  before_action :require_no_authentication, only: [:new, :create]
-  before_action :require_authentication, only: [:edit, :update]
-  before_action :set_user!, only: [:edit, :update]
+  before_action :require_no_authentication, only: %i[new create]
+  before_action :require_authentication, only: %i[edit update]
+  before_action :set_user!, only: %i[edit update]
 
   def new
     @user = User.new
@@ -14,23 +16,22 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome to the app, #{@user.name}"
       redirect_to root_path
     else
-      flash[:error] = "Something went wrong"
+      flash[:error] = 'Something went wrong'
       render 'new'
     end
   end
-  
+
   def edit; end
 
   def update
-      if @user.update user_params
-        flash[:success] = "Profile was successfully updated"
-        redirect_to root_path
-      else
-        flash[:error] = "Something went wrong"
-        render 'edit'
-      end
+    if @user.update user_params
+      flash[:success] = 'Profile was successfully updated'
+      redirect_to root_path
+    else
+      flash[:error] = 'Something went wrong'
+      render 'edit'
+    end
   end
-  
 
   private
 

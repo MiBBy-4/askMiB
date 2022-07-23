@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class QuestionsController < ApplicationController
-  before_action :set_question!, except: [:index, :new, :create]
+  before_action :set_question!, except: %i[index new create]
   def index
     @questions = Question.order(created_at: :desc).page params[:page]
   end
@@ -11,42 +13,39 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     if @question.save
-      flash[:success] = "Question successfully created"
+      flash[:success] = 'Question successfully created'
       redirect_to questions_path
     else
-      flash[:danger] = "Something went wrong"
+      flash[:danger] = 'Something went wrong'
       render 'new'
     end
   end
 
   def edit; end
-  
+
   def update
     if @question.update(question_params)
-      flash[:success] = "Question was successfully updated"
-      redirect_to questions_path
-    else
-      flash[:danger] = "Something went wrong"
-      render 'edit'
-    end
-  end
-  
-  def destroy
-    if @question.destroy
-      flash[:success] = 'Question was successfully deleted.'
+      flash[:success] = 'Question was successfully updated'
       redirect_to questions_path
     else
       flash[:danger] = 'Something went wrong'
-      redirect_to questions_path
+      render 'edit'
     end
+  end
+
+  def destroy
+    if @question.destroy
+      flash[:success] = 'Question was successfully deleted.'
+    else
+      flash[:danger] = 'Something went wrong'
+    end
+    redirect_to questions_path
   end
 
   def show
     @answer = @question.answers.build
     @answers = @question.answers.order created_at: :desc
   end
-  
-  
 
   private
 

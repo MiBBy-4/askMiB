@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -5,8 +7,8 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'pages#index'
   resources :questions do
-    resources :answers, except: [:new, :show]
+    resources :answers, except: %i[new show]
   end
-  resources :users, only: [:new, :create, :edit, :update]
-  resource :session, only: [:new, :create, :destroy]
+  resources :users, only: %i[new create edit update]
+  resource :session, only: %i[new create destroy]
 end

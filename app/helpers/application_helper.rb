@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def full_title(page_title = '')
     base_title = 'AskMiB'
@@ -16,7 +18,7 @@ module ApplicationHelper
     current_page = options.delete :current_page
     css_class = current_page == title ? 'text-secondary' : 'text-white'
     options[:class] = if options[:class]
-                        options[:class] + ' ' + css_class                 
+                        "#{options[:class]} #{css_class}"
                       else
                         css_class
                       end
