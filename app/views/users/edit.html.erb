@@ -1,0 +1,7 @@
+<% provide :page_title, current_user.name_or_email %>
+<% currently_at current_user.name_or_email %>
+
+<h1 class="mb-4">Edit profile</h1>
+
+<%= render 'form' %>
+
