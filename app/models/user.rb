@@ -20,10 +20,10 @@ class User < ApplicationRecord
   end
 
   def forget_me
-    self.remember_token = nil
     # rubocop:disable Rails/SkipsModelValidations
     update_column :remember_token_digest, nil
     # rubocop:enable Rails/SkipsModelValidations
+    self.remember_token = nil
   end
 
   def remember_token_authenticated?(remember_token)

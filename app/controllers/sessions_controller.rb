@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
   def destroy
     sign_out
     flash[:success] = 'Bye! See you later!'
-    redirect_to root_path, status: :see_other
+    redirect_to root_path, status: 303
   end
 
   private

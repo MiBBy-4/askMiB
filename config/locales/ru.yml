@@ -1,0 +1,19 @@
+ru:
+  views:
+    pagination:
+      first: "Первый"
+      next: "Следущая"
+      last: "Последний"
+      previous: "Предыдущая"
+  activerecord:
+    models:
+      question: Вопрос
+    attributes:
+      question:
+        title: "Заголовок"
+        body: "Текст"
+  pages:
+    index:
+      title: "Добро пожаловать на AskMiB!"
+  menu:
+    home: 'Главная'
