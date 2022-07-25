@@ -17,3 +17,21 @@ ru:
       title: "Добро пожаловать на AskMiB!"
   menu:
     home: 'Главная'
+
+  questions:
+    destroy:
+      success: "Вопрос успешно удален."
+    create:
+      success: "Вопрос успешно создан."
+    update:
+      success: "Вопрос успешно обновлен."
+  annswers:
+    destroy:
+      success: "Ответ успешно удален."
+    create:
+      success: "Ответ успешно создан."
+    update:
+      success: "Ответ успешно обновлен."
+
+  flash:
+    danger: "Что-то пошло не так"

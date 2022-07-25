@@ -13,10 +13,10 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     if @question.save
-      flash[:success] = 'Question successfully created'
+      flash[:success] = t('.success')
       redirect_to questions_path
     else
-      flash[:danger] = 'Something went wrong'
+      flash[:danger] = t('flash.danger')
       render 'new'
     end
   end
@@ -25,19 +25,19 @@ class QuestionsController < ApplicationController
 
   def update
     if @question.update(question_params)
-      flash[:success] = 'Question was successfully updated'
+      flash[:success] = t('.success')
       redirect_to questions_path
     else
-      flash[:danger] = 'Something went wrong'
+      flash[:danger] = t('flash.danger')
       render 'edit'
     end
   end
 
   def destroy
     if @question.destroy
-      flash[:success] = 'Question was successfully deleted.'
+      flash[:success] = t('.success')
     else
-      flash[:danger] = 'Something went wrong'
+      flash[:danger] = t('flash.danger')
     end
     redirect_to questions_path
   end

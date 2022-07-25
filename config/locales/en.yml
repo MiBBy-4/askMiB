@@ -11,4 +11,21 @@ en:
       title: "Welcome on AskMiB!"
   menu:
     home: "Home"
+  questions:
+    destroy:
+      success: "Question was successfully deleted."
+    create:
+      success: "Question was successfully created."
+    update:
+      success: "Question was successfully updated."
 
+  answers:
+    destroy:
+      success: "Answer was successfully deleted."
+    create:
+      success: "Answer was successfully created."
+    update:
+      success: "Answer was successfully updated."
+  
+  flash:
+    danger: "Something went wrong"

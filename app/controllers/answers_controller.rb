@@ -9,10 +9,10 @@ class AnswersController < ApplicationController
     @answer = @question.answers.build answer_params
 
     if @answer.save
-      flash[:success] = 'Answer successfully created'
+      flash[:success] = t('.success')
       redirect_to question_path(@question)
     else
-      flash[:danger] = 'Something went wrong'
+      flash[:danger] = t('flash.danger')
       @answers = @question.answers.order created_at: :desc
       render 'questions/show'
     end
@@ -20,10 +20,10 @@ class AnswersController < ApplicationController
 
   def destroy
     if @answer.destroy
-      flash[:success] = 'Answer was successfully deleted.'
+      flash[:success] = t('.success')
       redirect_to @question, status: :see_other
     else
-      flash[:danger] = 'Something went wrong'
+      flash[:danger] = t('flash.danger')
       redirect_to @question
     end
   end
@@ -32,10 +32,10 @@ class AnswersController < ApplicationController
 
   def update
     if @answer.update answer_params
-      flash[:success] = 'Answer was successfully updated'
+      flash[:success] = t('.success')
       redirect_to question_path(@question, anchor: dom_id(@answer))
     else
-      flash[:danger] = 'Something went wrong'
+      flash[:danger] = t('flash.danger')
       render 'edit'
     end
   end
