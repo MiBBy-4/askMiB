@@ -1,4 +1,8 @@
 <%= tag.article class: 'mb-2 card', id: dom_id(answer) do %>
+  <section class="card-header">
+    <%= question.user.gravatar %>
+    <%= question.user.name_or_email %>
+  </section>
   <div class="card-body">
     <section class="card-text">
       <small>
