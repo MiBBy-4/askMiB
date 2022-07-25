@@ -12,6 +12,9 @@ class User < ApplicationRecord
 
   has_secure_password validations: false
 
+  has_many :questions, dependent: :destroy
+  has_many :answers, dependent: :destroy
+
   def remember_me
     self.remember_token = SecureRandom.urlsafe_base64
     # rubocop:disable Rails/SkipsModelValidations
