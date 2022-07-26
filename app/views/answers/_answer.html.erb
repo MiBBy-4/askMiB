@@ -18,3 +18,6 @@
     <%= link_to "Delete answer", question_answer_path(question, answer), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
   </div>
 <% end %>
+
+<%= render 'comments/commentable', commentable: answer, comment: @comment,
+  html_id: dom_id(answer, 'comment_form') %>
