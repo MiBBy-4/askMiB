@@ -2,7 +2,7 @@
 
 class Question < ApplicationRecord
   include Commentable
-  
+
   has_many :answers, dependent: :destroy
   belongs_to :user
 

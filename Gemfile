@@ -35,12 +35,12 @@ gem 'jbuilder'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
-gem 'draper'
-gem 'valid_email2', '~> 4.0'
-gem 'rubyzip', '~> 2'
 gem 'caxlsx'
 gem 'caxlsx_rails'
+gem 'draper'
 gem 'rubyXL'
+gem 'rubyzip', '~> 2'
+gem 'valid_email2', '~> 4.0'
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -65,11 +65,11 @@ gem 'bootsnap', require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'activerecord-import'
+  gem 'bullet'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'faker', '~> 2'
   gem 'pry-rails'
-  gem 'activerecord-import'
-  gem 'bullet'
 end
 
 group :development do

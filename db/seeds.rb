@@ -7,6 +7,6 @@
 end
 
 User.find_each do |user|
-  user.send(:set_gravatar_hash) 
+  user.send(:set_gravatar_hash)
   user.save
 end

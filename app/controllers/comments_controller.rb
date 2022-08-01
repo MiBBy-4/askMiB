@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   before_action :set_commentable!
   before_action :set_question
@@ -29,9 +31,9 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:body).merge(user: current_user)
   end
-  
+
   def set_commentable!
-    klass = [Question, Answer].detect { |c| params["#{c.name.underscore}_id"]}
+    klass = [Question, Answer].detect { |c| params["#{c.name.underscore}_id"] }
     raise ActiveRecord::RecordNotFound if klass.blank?
 
     @commentable = klass.find(params["#{klass.name.underscore}_id"])

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CommentDecorator < ApplicationDecorator
   delegate_all
 
@@ -5,7 +7,7 @@ class CommentDecorator < ApplicationDecorator
 
   def for?(commentable)
     commentable = commentable.object if commentable.decorated?
-    
+
     commentable == self.commentable
   end
 end

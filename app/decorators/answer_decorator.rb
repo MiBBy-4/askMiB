@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AnswerDecorator < ApplicationDecorator
   delegate_all
   decorates_association :user
@@ -10,5 +12,4 @@ class AnswerDecorator < ApplicationDecorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
-
 end

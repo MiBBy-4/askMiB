@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Internationalization
   extend ActiveSupport::Concern
   included do
@@ -7,7 +9,7 @@ module Internationalization
 
     def switch_locale(&action)
       locale = locale_from_url || locale_from_headers || I18n.default_locale
-      response.set_header "Content-Language", locale
+      response.set_header 'Content-Language', locale
       I18n.with_locale locale, &action
     end
 
@@ -16,12 +18,12 @@ module Internationalization
 
       return if header.nil?
 
-      locales = header.gsub(/\s+/, '').split(",").map do |laguage_tag|
+      locales = header.gsub(/\s+/, '').split(',').map do |laguage_tag|
         locale, quality = laguage_tag.split(/;q=/i)
         quality = quality ? quality.to_f : 1.0
         [locale, quality]
       end.reject do |(locale, quality)|
-        locale == '*' || quality == 0
+        locale == '*' || quality.zero?
       end.sort_by do |(_, quality)|
         quality
       end.map(&:first)
@@ -30,16 +32,14 @@ module Internationalization
 
       if I18n.enforce_available_locales
         locale = locales.reverse.find { |locale| I18n.available_locales.any? { |a1| match?(a1, locale) } }
-        if locale
-          I18n.available_locales.find { |a1| match?(a1, locale) }
-        end
+        I18n.available_locales.find { |a1| match?(a1, locale) } if locale
       else
         locales.last
       end
     end
 
     def match?(s1, s2)
-      s1.to_s.casecmp(s2.to_s) == 0
+      s1.to_s.casecmp(s2.to_s).zero?
     end
 
     def locale_from_url

@@ -20,11 +20,11 @@ class SessionsController < ApplicationController
   def destroy
     sign_out
     flash[:success] = 'Bye! See you later!'
-    redirect_to root_path, status: 303
+    redirect_to root_path, status: :see_other
   end
 
   private
-  
+
   def do_sign_in(user)
     sign_in(user)
     remember(user) if params[:remember_me] == '1'
