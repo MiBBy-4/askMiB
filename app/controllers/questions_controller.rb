@@ -6,6 +6,7 @@ class QuestionsController < ApplicationController
   def index
     @questions = Question.all_by_tags(params[:tag_ids]).page params[:page]
     @questions = @questions.decorate
+    @tags = Tag.all
   end
 
   def new

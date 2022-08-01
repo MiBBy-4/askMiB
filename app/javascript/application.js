@@ -2,5 +2,6 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import * as bootstrap from "bootstrap"
+import './scripts/select2'
 
 import '@popperjs/core'
