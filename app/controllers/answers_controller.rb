@@ -21,7 +21,7 @@ class AnswersController < ApplicationController
   def destroy
     if @answer.destroy
       flash[:success] = t('.success')
-      redirect_to @question, status: :see_other
+      redirect_to @question, status: 303
     else
       flash[:danger] = t('flash.danger')
       redirect_to @question

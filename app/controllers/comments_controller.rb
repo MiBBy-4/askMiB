@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @commentable.comments.build comment_params
     if @comment.save
-      flash[:success] = "Comment successfully created"
+      flash[:success] = 'Comment successfully created'
       redirect_to question_path(@question)
     else
       @comment = @comment.decorate
@@ -15,6 +15,13 @@ class CommentsController < ApplicationController
       @question = @question.decorate
       render('questions/show')
     end
+  end
+
+  def destroy
+    comment = @commentable.comments.find params[:id]
+    comment.destroy
+    flash[:success] = 'Comment successfully deleted'
+    redirect_to question_path(@question), status: :see_other
   end
 
   private

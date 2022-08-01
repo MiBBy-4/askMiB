@@ -69,6 +69,7 @@ group :development, :test do
   gem 'faker', '~> 2'
   gem 'pry-rails'
   gem 'activerecord-import'
+  gem 'bullet'
 end
 
 group :development do

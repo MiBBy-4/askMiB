@@ -3,7 +3,7 @@
 class QuestionsController < ApplicationController
   before_action :set_question!, except: %i[index new create]
   def index
-    @questions = Question.order(created_at: :desc).page params[:page]
+    @questions = Question.includes([:user]).order(created_at: :desc).page params[:page]
     @questions = @questions.decorate
   end
 

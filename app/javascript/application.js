@@ -4,5 +4,3 @@ import "controllers"
 import * as bootstrap from "bootstrap"
 
 import '@popperjs/core'
-import 'bootstrap/js/dist/dropdown'
-import 'bootstrap/js/dist/collapse'
