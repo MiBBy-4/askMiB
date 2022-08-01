@@ -11,9 +11,9 @@ class Question < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
 
-  scope :all_by_tags, lambda {|tags|
+  scope :all_by_tags, lambda { |tags|
     questions = includes(:user)
-    questions = if tags 
+    questions = if tags
                   questions.joins(:tags).where(tags: tags).preload(:tags)
                 else
                   questions.includes(:question_tags, :tags)

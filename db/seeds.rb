@@ -15,4 +15,3 @@
   tag_title = Faker::Hipster.word
   Tag.create title: tag_title
 end
-
