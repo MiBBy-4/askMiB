@@ -6,11 +6,16 @@
   <div class="card-body">
     <h4><%= question.title %></h4>
     <section class="card-text">
-      <time datetime="<%= question.formatted_create_at %>">
+      <%= tag.time datetime: question.formatted_create_at do %>
         <small>
           <%= question.formatted_create_at %>
         </small>
-      </time>
+      <% end %>
+
+      <div>
+        <%= render question.tags %>
+      </div>
+
       <p class="my-2">
         <%= truncate(strip_tags(question.body), length: 150, omission: '...(continued)') %>
       </p>

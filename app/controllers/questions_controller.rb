@@ -2,8 +2,9 @@
 
 class QuestionsController < ApplicationController
   before_action :set_question!, except: %i[index new create]
+  before_action :fetch_tags, only: %i[new edit]
   def index
-    @questions = Question.includes([:user]).order(created_at: :desc).page params[:page]
+    @questions = Question.all_by_tags(params[:tag_ids]).page params[:page]
     @questions = @questions.decorate
   end
 
@@ -53,10 +54,14 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:title, :body)
+    params.require(:question).permit(:title, :body, tag_ids: [])
   end
 
   def set_question!
     @question = Question.find(params[:id])
+  end
+
+  def fetch_tags
+    @tags = Tag.all
   end
 end

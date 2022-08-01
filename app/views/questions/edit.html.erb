@@ -1,5 +1,5 @@
-<% provide :page_title, {@question.title} %>
+<% provide :page_title, @question.title %>
 <% currently_at "Questions" %>
 
 <h1 class="mb-4">Edit <%= @question.title %></h1>
-<%= render 'form', object: @question %>
+<%= render 'form', question: @question, tags: @tags %>
