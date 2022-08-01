@@ -25,10 +25,10 @@ module Admin
 
     def update
       if @user.update user_params
-        flash[:success] = "User was successfully updated"
+        flash[:success] = 'User was successfully updated'
         redirect_to admin_users_path
       else
-        flash[:error] = "Something went wrong"
+        flash[:error] = 'Something went wrong'
         render :edit
       end
     end
@@ -42,7 +42,6 @@ module Admin
         redirect_to admin_users_path
       end
     end
-    
 
     private
 
