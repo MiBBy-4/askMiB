@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
 class QuestionsController < ApplicationController
+  # before_action :require_authentication, except: %i[show index]
   before_action :set_question!, except: %i[index new create]
+  before_action :authorize_question!
+  after_action :verify_authorized
   before_action :fetch_tags, only: %i[new edit]
+
   def index
     @questions = Question.all_by_tags(params[:tag_ids]).page params[:page]
     @questions = @questions.decorate
@@ -64,5 +68,9 @@ class QuestionsController < ApplicationController
 
   def fetch_tags
     @tags = Tag.all
+  end
+
+  def authorize_question!
+    authorize(@question || Question)
   end
 end

@@ -11,10 +11,11 @@
             <p>
               <%= sanitize comment.body %>
             </p>
-
-            <%= link_to 'delete',
-            polymorphic_path([comment.commentable, comment]), class: 'btn btn-danger btn-sm',
-            data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+            <% if policy(comment).destroy? %>
+              <%= link_to 'delete',
+              polymorphic_path([comment.commentable, comment]), class: 'btn btn-danger btn-sm',
+              data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+            <% end %>
           </div>
         </section>
       </div>

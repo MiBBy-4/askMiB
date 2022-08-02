@@ -20,8 +20,13 @@
         <%= truncate(strip_tags(question.body), length: 150, omission: '...(continued)') %>
       </p>
     </section>
-    <%= link_to "Edit", edit_question_path(question), class: 'btn btn-secondary' %>
+
     <%= link_to "Show", question_path(question), class: 'btn btn-primary' %>
-    <%= link_to "Delete", question_path(question), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+    <% if policy(question).edit? %>
+      <%= link_to "Edit", edit_question_path(question), class: 'btn btn-secondary' %>
+    <% end %>
+    <% if policy(question).destroy? %>
+      <%= link_to "Delete", question_path(question), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+    <% end %>
   </div>
 </article>

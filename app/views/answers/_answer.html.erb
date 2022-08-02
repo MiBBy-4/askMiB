@@ -14,8 +14,12 @@
         <%= sanitize answer.body %>
       </div>
     </section>
-    <%= link_to "Edit", edit_question_answer_path(question, answer), class: 'btn btn-info btn-sm' %>
-    <%= link_to "Delete answer", question_answer_path(question, answer), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+    <% if policy(answer).edit? %>
+      <%= link_to "Edit", edit_question_answer_path(question, answer), class: 'btn btn-info btn-sm' %>
+    <% end %>
+    <% if policy(answer).destroy? %>
+      <%= link_to "Delete answer", question_answer_path(question, answer), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+    <% end %>
   </div>
 <% end %>
 
