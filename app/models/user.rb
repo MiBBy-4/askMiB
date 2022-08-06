@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  include Recoverable
+
   attr_accessor :old_password, :remember_token, :admin_edit
 
   enum role: {
