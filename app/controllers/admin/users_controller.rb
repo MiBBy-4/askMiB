@@ -10,7 +10,7 @@ module Admin
     def index
       respond_to do |format|
         format.html { @users = User.order(created_at: :desc).page params[:page] }
-        format.zip do 
+        format.zip do
           UserBulkExportJob.perform_later current_user
           flash[:success] = 'Wait while task will finish. The result will be send in your mail'
           redirect_to admin_users_path
@@ -57,7 +57,6 @@ module Admin
       file.close
       result.key
     end
-
 
     def set_user!
       @user = User.find params[:id]

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   class UserMailer < ApplicationMailer
     def bulk_import_done

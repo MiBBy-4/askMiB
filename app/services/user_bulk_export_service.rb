@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserBulkExportService < ApplicationService
   def call
     renderer = ActionController::Base.new
