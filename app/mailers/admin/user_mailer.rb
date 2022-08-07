@@ -12,5 +12,13 @@ module Admin
 
       mail to: @user.email, subject: 'Something went wrong'
     end
+
+    def bulk_export_done
+      @user = params[:user]
+      zipped_blob = params[:zipped_blob]
+
+      attachments[zipped_blob.attachable_filename] = zipped_blob.download
+      mail to: @user.email, subject: 'Export users finally completed'
+    end
   end
 end
